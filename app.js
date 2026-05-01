@@ -1,6 +1,8 @@
 import express from "express";
 import mongoose from "mongoose";
 import ejs from "ejs";
+import { Listing } from "./models/listing.js";
+
 
 import dotenv from "dotenv";
 dotenv.config();
@@ -31,6 +33,19 @@ app.get("/", (req, res) => {
 });
 
 
+// app.get("/testListing", async (req, res) => {
+//     let sampleListing = new Listing({
+//         title: "Beautiful Beach House",
+//         description: "A lovely house near the sea with amazing sunset view.",
+//         price: 12000,
+//         location: "Goa",
+//         country: "India"
+//     });
+
+//     await sampleListing.save();
+//     console.log("sample was save");
+//     res.send("Sample Listing Created");
+// });
 
 //server
 app.listen(PORT, () => {
