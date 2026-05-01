@@ -1,0 +1,29 @@
+{
+  "name": "staysync",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RiteshKolate21/StaySync.git"
+  },
+  "keywords": [],
+  "author": "Ritesh Kolate",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/RiteshKolate21/StaySync/issues"
+  },
+  "homepage": "https://github.com/RiteshKolate21/StaySync#readme",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "dotenv": "^17.4.2",
+    "ejs": "^5.0.2",
+    "express": "^5.2.1",
+    "mongoose": "^9.6.1"
+  }
+}
