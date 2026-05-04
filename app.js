@@ -34,6 +34,9 @@ async function main() {
 
 app.set("view engine","ejs");
 app.set("views", path.join(__dirname, "views"));
+app.use(express.urlencoded({extended:true}));
+
+
 //Routes
 app.get("/", (req, res) => {
   res.send("Hello from StaySync");
@@ -54,10 +57,20 @@ app.get("/", (req, res) => {
 //     res.send("Sample Listing Created");
 // });
 
+//Listing Route
 app.get("/listings",async(req,res)=>{
   const alllistings = await Listing.find({});
   res.render("listings/index.ejs", { alllistings }); 
-  console.log(alllistings)
+  
+});
+
+//Show Route
+
+app.get("/listings/:id",async(req,res)=>{
+
+  const {id}=req.params;
+  const listing=await Listing.findById(id);
+  res.render("listings/show.ejs",{ listing })
 });
 
 

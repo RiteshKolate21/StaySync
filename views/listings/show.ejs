@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= listing.title %></title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+        }
+
+        .container {
+            width: 80%;
+            margin: 30px auto;
+        }
+
+        .title {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        .content {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .description {
+            margin: 10px 0;
+            color: #555;
+        }
+
+        .price {
+            font-size: 20px;
+            font-weight: bold;
+            color: #e63946;
+        }
+
+        .location {
+            margin-top: 5px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="title"><%= listing.title %></div>
+
+        <img class="image" src="<%= listing.image.url %>" alt="">
+
+        <div class="content">
+            <div class="description"><%= listing.description %></div>
+            <div class="price">₹ <%= listing.price.toLocaleString("en-IN")%></div>
+            <div class="location"><%= listing.location %>, <%= listing.country %></div>
+        </div>
+    </div>
+
+</body>
+</html>
