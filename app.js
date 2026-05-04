@@ -4,7 +4,7 @@ import ejs from "ejs";
 import { Listing } from "./models/listing.js";
 import path from "path";
 import { fileURLToPath } from "url";
-
+import methodOverride from 'method-override';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -16,6 +16,7 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 8000;
 
+app.use(methodOverride('_method'));
 
 //database connection
 const MONGO_URL = process.env.MONGO_URL;
@@ -75,6 +76,22 @@ app.post("/listings",async (req,res)=>{
   const newlisting=new Listing(req.body.listing);
   await newlisting.save();
   res.redirect("/listings");
+});
+
+//edit route
+app.get('/listings/:id/edit',async(req,res)=>{
+  const {id}=req.params;
+  const listing=await Listing.findById(id);
+  res.render("listings/edit.ejs",{listing})
+  console.log(listing);
+
+})
+
+//update route
+app.put("/listings/:id",async(req,res)=>{
+const {id}=req.params;
+await Listing.findByIdAndUpdate(id,{...req.body.listing});
+res.redirect(`/listings/${id}`);
 });
 
 //Show Route

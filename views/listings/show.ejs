@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= listing.title %></title>
+    <title>
+        <%= listing.title %>
+    </title>
 
     <style>
         body {
@@ -35,7 +38,7 @@
             padding: 20px;
             border-radius: 12px;
             margin-top: 20px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
         .description {
@@ -53,21 +56,78 @@
             margin-top: 5px;
             color: #777;
         }
+
+
+        .actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .edit-btn {
+            background-color: #457b9d;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.2s ease;
+        }
+
+        .edit-btn:hover {
+            background-color: #35607a;
+        }
+
+        .delete-btn {
+            background-color: #e63946;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .delete-btn:hover {
+            background-color: #c82333;
+        }
     </style>
 </head>
+
 <body>
 
     <div class="container">
-        <div class="title"><%= listing.title %></div>
+        <div class="title">
+            <%= listing.title %>
+        </div>
 
         <img class="image" src="<%= listing.image.url %>" alt="">
 
         <div class="content">
-            <div class="description"><%= listing.description %></div>
-            <div class="price">₹ <%= listing.price.toLocaleString("en-IN")%></div>
-            <div class="location"><%= listing.location %>, <%= listing.country %></div>
+            <div class="description">
+                <%= listing.description %>
+            </div>
+            <div class="price">₹ <%= listing.price.toLocaleString("en-IN")%>
+            </div>
+            <div class="location">
+                <%= listing.location %>, <%= listing.country %>
+            </div>
+
+            <div class="actions">
+                <a href="/listings/<%= listing._id %>/edit" class="edit-btn">Edit</a>
+
+                <form action="/listings/<%= listing._id %>?_method=DELETE" method="post">
+                    <button class="delete-btn" onclick="return confirm('Are you sure?')">
+                        Delete
+                    </button>
+                </form>
+
+
+            </div>
         </div>
     </div>
 
 </body>
+
 </html>
