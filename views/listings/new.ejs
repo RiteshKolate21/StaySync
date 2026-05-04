@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StaySync</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+        }
+
+        .form-container {
+            width: 400px;
+            margin: 50px auto;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        input,
+        textarea {
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+            outline: none;
+        }
+
+        textarea {
+            resize: none;
+            height: 100px;
+        }
+
+        input:focus,
+        textarea:focus {
+            border-color: #e63946;
+        }
+
+        button {
+            background-color: #e63946;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #d62839;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="form-container">
+        <h2>Create New Listing</h2>
+
+        <form action="/listings" method="post">
+            <input type="text" name="listing[title]" placeholder="Title" required>
+
+            <textarea name="listing[description]" placeholder="Description" required></textarea>
+
+            <input type="text" name="listing[image]" placeholder="Image URL">
+
+            <input type="number" name="listing[price]" placeholder="Price" required>
+
+            <input type="text" name="listing[location]" placeholder="Location">
+
+            <input type="text" name="listing[country]" placeholder="Country">
+
+            <button type="submit">Create Listing</button>
+        </form>
+    </div>
+</body>
+
+</html>
