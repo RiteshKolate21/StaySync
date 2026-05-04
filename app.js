@@ -2,6 +2,12 @@ import express from "express";
 import mongoose from "mongoose";
 import ejs from "ejs";
 import { Listing } from "./models/listing.js";
+import path from "path";
+import { fileURLToPath } from "url";
+
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 
 import dotenv from "dotenv";
@@ -26,7 +32,8 @@ async function main() {
   await mongoose.connect(MONGO_URL);
 }
 
-
+app.set("view engine","ejs");
+app.set("views", path.join(__dirname, "views"));
 //Routes
 app.get("/", (req, res) => {
   res.send("Hello from StaySync");
@@ -46,6 +53,13 @@ app.get("/", (req, res) => {
 //     console.log("sample was save");
 //     res.send("Sample Listing Created");
 // });
+
+app.get("/listings",async(req,res)=>{
+  const alllistings = await Listing.find({});
+  res.render("listings/index.ejs", { alllistings }); 
+  console.log(alllistings)
+});
+
 
 //server
 app.listen(PORT, () => {
